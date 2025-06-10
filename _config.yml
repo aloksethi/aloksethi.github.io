@@ -60,20 +60,17 @@ author:
   avatar : "/assets/images/bio-photo.jpg"
   bio    : ""
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://"
     - label: "LinkedIn"
-      icon: "fa-brands fa-linkedin fa-2xl"
+      icon: "fa-brands fa-linkedin fa-xl"
       url: "https://www.linkedin.com/in/sethialok/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/"
     - label: "Orcid"
-      icon: "fa-brands fa-orcid fa-2xl"
+      icon: "fa-brands fa-orcid fa-xl"
       url: "https://orcid.org/0000-0003-4748-8472"
     - label: "Scholar"
-      icon: "fa-brands fa-google-scholar fa-2xl"
+      icon: "fa-brands fa-google-scholar fa-xl"
       url: "https://scholar.google.com/citations?user=sjV_1cEAAAAJ"
       
 #footer:
@@ -95,11 +92,11 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
-      read_time: true
+      author_profile: false
+      read_time: false
       comments: true
-      share: true
-      related: true
+      share: false
+      related: false
   # _pages
   - scope:
       path: "_pages"
