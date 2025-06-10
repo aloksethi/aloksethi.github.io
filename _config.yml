@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: "My ramblings"
+title: "Alok Sethi"
 email:
 description: >- # this means to ignore newlines until "baseurl:"
   A peronsal blog where I place my projects, code snippets, etc. so that I can access them easilyt in the future.
@@ -63,23 +63,31 @@ author:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+    - label: "LinkedIn"
+      icon: "fa-brands fa-linkedin fa-2xl"
+      url: "https://www.linkedin.com/in/sethialok/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+    - label: "Orcid"
+      icon: "fa-brands fa-orcid fa-2xl"
+      url: "https://orcid.org/0000-0003-4748-8472"
+    - label: "Scholar"
+      icon: "fa-brands fa-google-scholar fa-2xl"
+      url: "https://scholar.google.com/citations?user=sjV_1cEAAAAJ"
+      
+#footer:
+#  links:
+#    - label: "GitHub"
+#      icon: "fab fa-fw fa-github"
+#      url: "https://github.com/"
 
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-
-
+nav:
+  - title: "Home"
+    url: /
+  - title: "About"
+    url: /about/
+    
 defaults:
   # _posts
   - scope:
