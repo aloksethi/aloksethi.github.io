@@ -30,6 +30,7 @@ permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+enable_copy_code_button:  true
 
 include:
   - _pages
@@ -85,6 +86,10 @@ nav:
   - title: "About"
     url: /about/
     
+sass:
+  style: compressed
+
+
 defaults:
   # _posts
   - scope:
@@ -104,6 +109,11 @@ defaults:
     values:
       layout: single
       author_profile: true
+  # css
+  - scope:
+      path: "assets/css"
+    values:
+      css: "custom"
 
 category_archive:
   type: liquid

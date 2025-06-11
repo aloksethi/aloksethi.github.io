@@ -1,0 +1,47 @@
+// In _sass/custom.scss
+.social-icons {
+  .fa-github {
+    color: var(--text-color);
+  }
+}
+#theme-toggle-icon {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 999;
+}
+
+#theme-toggle-icon svg {
+  display: none;
+  width: 28px;
+  height: 28px;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+#theme-toggle-icon svg:hover {
+  color: #222;
+}
+
+[data-theme="light"] #icon-sun {
+  display: block;
+}
+
+[data-theme="dark"] #icon-moon {
+  display: block;
+}
+
+[data-theme="dark"] {
+  background-color: #121212;
+  color: #e0e0e0;
+
+  a {
+    color: #80cbc4;
+  }
+
+  .page, .page__content, .archive, .masthead, .nav__items {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+}
