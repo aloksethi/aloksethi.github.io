@@ -31,7 +31,7 @@ paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 enable_copy_code_button:  true
-
+url: "https://aloksethi.github.io/"
 include:
   - _pages
 
@@ -66,7 +66,7 @@ author:
       url: "https://www.linkedin.com/in/sethialok/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/aloksethi"
     - label: "Orcid"
       icon: "fa-brands fa-orcid fa-xl"
       url: "https://orcid.org/0000-0003-4748-8472"
