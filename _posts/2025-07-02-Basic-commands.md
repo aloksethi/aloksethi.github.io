@@ -9,8 +9,17 @@ toc: true
 toc_sticky: true
 ---
 
+A small collection of commands, tools, etc., i frequently have to do.
+
 # Git
-A small collection of information regarding git
+
+## Config
+ Configure globally the noreply email address for the [github](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address). You can find the private address on [this](https://github.com/settings/emails) page. 
+```
+git config --global user.email "aloksethi@users.noreply.github.com"
+```
+- add the key for ssh access to github [instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
 
 ## Making a remote repo on the server
 
@@ -21,7 +30,7 @@ A small collection of information regarding git
 * Now can push to the remote `git push cwc_server master`. Syntax of git push is `git push <remote> <local_branch>:<remote_branch>`.In order to set the defaults for ths push command, execute the `git push -u cwc_server master`.
 
 ## Saving password
-* When on linux/WSL </br>
+* When on linux/WSL 
 `git config --local credential.helper 'cache --timeout=3600000'`
 
 ## Showing list of branches
@@ -54,7 +63,33 @@ Get-Content .\app.log -Wait
 ```
 
 # Jekyll
+Install ruby via rbenv instead of snap. Following are the steps
+
+```bash
+sudo apt install -y build-essential libssl-dev libreadline-dev zlib1g-dev libyaml-dev
+# Install rbenv and ruby-build plugin
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+cd ~/.rbenv && src/configure && make -C src
+
+# Add rbenv to PATH
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init - bash)"' >> ~/.bashrc
+source ~/.bashrc
+
+# Install ruby-build plugin
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+# Install Ruby
+rbenv install 3.4.4 # can check the available version via rbenv install -l
+# activate this Ruby version as the new default
+rbenv global 3.4.4
+#Install Bundler and Jekyll
+gem install bundler jekyll
 ```
+In the project directory
+
+```bash
+bundle install
 bundle exec jekyll serve --livereload
 ```
 
