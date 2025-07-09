@@ -107,7 +107,18 @@ Pico A GP3 -> Pico B SWDIO
 Pico A GP4/UART1 TX -> Pico B GP1/UART0 RX
 Pico A GP5/UART1 RX -> Pico B GP0/UART0 TX
 ```
-
+## GDB debugging
+Create a .gdbinit file with the following text. 
+```
+target extended-remote localhost:3333
+monitor reset init
+continue
+```
+In a terminal, run openocd
+```shell
+sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000"
+```
+Start the debugging session via `gdb-multiarch build/elec-price-mon.elf`.
 # nao QT
 basically how to make the robot_settings run on the linux box
 ```
