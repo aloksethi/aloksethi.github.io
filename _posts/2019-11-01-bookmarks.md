@@ -41,6 +41,8 @@ toc_sticky: true
 
 ## Setup
 * [Setting up Eclipse for ARM development](http://gnuarmeclipse.github.io/install/)	
+
+## Interesting projects
 * [Using a rotary encoder with a single pin](https://www.elektormagazine.com/labs/rotary-encoder-on-a-single-mcu-pin)
 * [Infrared NEC protocol](https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol)
 
