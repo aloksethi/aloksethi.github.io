@@ -53,5 +53,9 @@ The REST api guide is available [here](https://transparencyplatform.zendesk.com/
 Currently the data is coming for every 60 minutes but I beleive it will change sometime in the future to every 15 mins. In the response xml, it is denoted by `<resolution>PT60M</resolution>`.
 
 ## Pico W
-
-Haven't started writing anything here.
+Have the basic environment setup with FreeRTOS and LWIP running. Haven't done nay coding related to the project yet.
+```bash
+git clone https://your/repo.git
+cd your/repo
+git submodule update --init --recursive
+```

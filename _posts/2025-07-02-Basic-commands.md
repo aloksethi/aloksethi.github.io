@@ -96,6 +96,18 @@ bundle exec jekyll serve --livereload
 # Packages 
 Finding which package provides a particular command/file `dpkg -S command` for example, if you want to know which package provides 'tail' then `dpkg -S tail`
 
+# Pico 
+
+## Pico probe connections
+Copied from the Appendix A:debugprobe of the getting-started-with pico guide
+```
+Pico A GND -> Pico B GND
+Pico A GP2 -> Pico B SWCLK
+Pico A GP3 -> Pico B SWDIO
+Pico A GP4/UART1 TX -> Pico B GP1/UART0 RX
+Pico A GP5/UART1 RX -> Pico B GP0/UART0 TX
+```
+
 # nao QT
 basically how to make the robot_settings run on the linux box
 ```
