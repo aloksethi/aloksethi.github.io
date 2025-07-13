@@ -90,8 +90,9 @@ In the project directory
 
 ```bash
 bundle install
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --livereload --incremental
 ```
+Another way of running the same thing is via `bundle exec jekyll serve -lI`.
 
 # Packages 
 Finding which package provides a particular command/file `dpkg -S command` for example, if you want to know which package provides 'tail' then `dpkg -S tail`
