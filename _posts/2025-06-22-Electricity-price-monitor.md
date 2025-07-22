@@ -53,6 +53,44 @@ The REST api guide is available [here](https://transparencyplatform.zendesk.com/
 
 Currently the data is coming for every 60 minutes but I beleive it will change sometime in the future to every 15 mins. In the response xml, it is denoted by `<resolution>PT60M</resolution>`.
 
+## RPi
+```
+python3 -m venv .venv
+(main) asethi@tux:elec_price_monitor $ source .venv/bin/activate
+(.venv) (main) asethi@tux:elec_price_monitor $ pip install --upgrade build
+
+(.venv) (main) asethi@tux:elec_price_monitor $ pip install --editable .
+
+
+```
+### installation
+python -m build
+`pip install elec_price_monitor-0.1.2-py3-none-any.whl --no-deps --force-reinstall`
+
+systemctl stop elec-price-monitor 
+systemctl start elec-price-monitor 
+systemctl daemon-reload
+
+```
+cat /etc/systemd/system/elec-price-monitor.service 
+[Unit]
+Description=Electricity Price Monitor
+After=network.target
+
+[Service]
+LoadCredential=api_token:/etc/credentials/elec-price-monitor/api-token
+#Environment=API_TOKEN=%d/api_token
+Environment="API_TOKEN=xxxxxxxxxxx"
+User=ubuntu
+ExecStart=/usr/bin/python3 -m elec_price_monitor.main_loop --debug --dump_img_buf
+WorkingDirectory=/home/ubuntu
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
 ## Pico W
 
 ### Setup
@@ -61,6 +99,9 @@ Have the basic environment setup with FreeRTOS and LWIP running.
 git clone https://your/repo.git
 cd your/repo
 git submodule update --init --recursive
+```
+```shell
+sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "tcl_port 6667" -c "telnet_port 4444" -c "gdb_port 3334"
 ```
 
 ### miniz
@@ -134,3 +175,25 @@ void sleep_fxn(void)
 }
 ```
 in the cyw43_task, i am calling `cyw43_arch_deinit` once i have decompressed a buffer. all the tasks still stay alive, don't know how timers will behave with this. To wake up, need an external interrupt. Currently using the Key 0 present in the waveshare e-paper shim. Had to add a pull-up vrom 3.3V out to pin4/gpio2. currently have a 200 $$\Omega$$  pull-up but should have a bit weaker one.
+
+### RTC
+[RTC writeup](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)
+
+[Pico i2c bus probe example](https://www.raspberrypi.com/documentation/pico-sdk/hardware.html#group_hardware_i2c)
+
+I2C address for DS3231: according to datasheet actual byte is `0xD0` or `0xD1`, however, the pico library add the last `0` or `1` by itself, so for the api have to use `0x68` as the I2C address.
+I2C address for the EEPROM should be `0x57`, if no solder jumpers have been installed.
+```
+#define EXT_RTC_I2C_DEV         (i2c0)
+#define EXT_RTC_I2C_ADDRESS     (0x68)
+
+ret = i2c_write_blocking(EXT_RTC_I2C_DEV, EXT_RTC_I2C_ADDRESS, &reg, 1, true);  // true to keep master control of bus
+if (ret == PICO_ERROR_GENERIC)
+    printf("failed to wirite ext rtc\n");
+
+ret = i2c_read_blocking(EXT_RTC_I2C_DEV, EXT_RTC_I2C_ADDRESS, &buf[0], 7, false);  // false - finished with bus
+if (ret == PICO_ERROR_GENERIC)
+    printf("failed to read ext rtc\n");
+```
+
+[Datasheet DS3231M](/assets/pdfs/ds3231m.pdf)
