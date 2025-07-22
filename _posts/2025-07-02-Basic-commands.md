@@ -14,12 +14,32 @@ A small collection of commands, tools, etc., i frequently have to do.
 # Git
 
 ## Config
+
+### email address
  Configure globally the noreply email address for the [github](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address). You can find the private address on [this](https://github.com/settings/emails) page. 
 ```
 git config --global user.email "aloksethi@users.noreply.github.com"
 ```
 - add the key for ssh access to github [instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
 
+### difftool
+
+The .gitconfig file in the home directory corresponds to the '--global' option in `git config`. All the current options can be listed via `git config --global -l`
+```
+vim ~/.gitconfig 
+
+# Add the following to your .gitconfig file.
+[diff]
+    tool = meld
+[difftool]
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+
+```
+### Saving password
+* When on linux/WSL 
+`git config --local credential.helper 'cache --timeout=3600000'`
 
 ## Making a remote repo on the server
 
@@ -29,9 +49,7 @@ git config --global user.email "aloksethi@users.noreply.github.com"
 * At the local machine, added the remote repository as a remote ` git remote add cwc_server ssh://USER_NAME@SERVER_NAME:/research/rftrx/library/git_repo.git`.
 * Now can push to the remote `git push cwc_server master`. Syntax of git push is `git push <remote> <local_branch>:<remote_branch>`.In order to set the defaults for ths push command, execute the `git push -u cwc_server master`.
 
-## Saving password
-* When on linux/WSL 
-`git config --local credential.helper 'cache --timeout=3600000'`
+
 
 ## Showing list of branches
 ```
