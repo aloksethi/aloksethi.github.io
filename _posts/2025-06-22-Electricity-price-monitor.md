@@ -54,22 +54,23 @@ The REST api guide is available [here](https://transparencyplatform.zendesk.com/
 Currently the data is coming for every 60 minutes but I beleive it will change sometime in the future to every 15 mins. In the response xml, it is denoted by `<resolution>PT60M</resolution>`.
 
 ## RPi
-```
+```shell
 python3 -m venv .venv
 (main) asethi@tux:elec_price_monitor $ source .venv/bin/activate
 (.venv) (main) asethi@tux:elec_price_monitor $ pip install --upgrade build
 
 (.venv) (main) asethi@tux:elec_price_monitor $ pip install --editable .
 
-
 ```
 ### installation
+```shell
 python -m build
-`pip install elec_price_monitor-0.1.2-py3-none-any.whl --no-deps --force-reinstall`
+pip install elec_price_monitor-0.1.2-py3-none-any.whl --no-deps --force-reinstall
 
 systemctl stop elec-price-monitor 
 systemctl start elec-price-monitor 
 systemctl daemon-reload
+```
 
 ```
 cat /etc/systemd/system/elec-price-monitor.service 
@@ -95,13 +96,13 @@ WantedBy=multi-user.target
 
 ### Setup
 Have the basic environment setup with FreeRTOS and LWIP running.
-```bash
+```shell
 git clone https://your/repo.git
 cd your/repo
 git submodule update --init --recursive
 ```
 ```shell
-sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "tcl_port 6667" -c "telnet_port 4444" -c "gdb_port 3334"
+sudo openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 5000" -c "tcl_port 6667" -c "telnet_port 4445" -c "gdb_port 3334"
 ```
 
 ### miniz
@@ -110,7 +111,7 @@ using miniz Release 3.0.2 for decompressing, download from [github](https://gith
 ## Power saving
 ### tickless mode
 Tried tickless mode, didn;t work [forum post](https://forums.raspberrypi.com/viewtopic.php?t=389870). `vPortSuppressTicksAndSleep` never gets called as `prvGetExpectedIdleTime` always returned zero and according to config there has to be a time of  `2` ticks minimum (`configEXPECTED_IDLE_TIME_BEFORE_SLEEP`). checked via 
-```C
+```c
 #include <task.h>
 
 void print_task_details() {
@@ -150,7 +151,7 @@ tcpip_thread	1	Blocked (State=2)	LWIP's TCP/IP stack thread.
 
 ### Sleep mode
 Currently using sleep mode from the pico-extra repo with some degree of success. Current power consumption numbers are around 60mA to 1.2mA. normally it hovers around 45mA.
-```C
+```c
 void sleep_fxn(void)
 {
 //  while(true) {
