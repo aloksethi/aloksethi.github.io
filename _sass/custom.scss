@@ -4,3 +4,237 @@
     color: var(--text-color);
   }
 }
+
+
+
+
+// Define Solarized colors as Sass variables (optional, but good practice for organization)
+// Solarized Light Base Palette
+$sl-base03: #fdf6e3;
+$sl-base02: #eee8d5;
+$sl-base01: #93a1a1;
+$sl-base00: #839496;
+$sl-base0:  #657b83;
+$sl-base1:  #586e75;
+$sl-base2:  #073642;
+$sl-base3:  #002b36;
+
+// Solarized Dark Base Palette
+$sd-base03: #002b36;
+$sd-base02: #073642;
+$sd-base01: #586e75;
+$sd-base00: #657b83;
+$sd-base0:  #839496;
+$sd-base1:  #93a1a1;
+$sd-base2:  #eee8d5;
+$sd-base3:  #fdf6e3;
+
+// Accent Colors (same for both, but perceived differently)
+$solar-yellow:  #b58900;
+$solar-orange:  #cb4b16;
+$solar-red:     #dc322f;
+$solar-magenta: #d33682;
+$solar-violet:  #6c71c4;
+$solar-blue:    #268bd2;
+$solar-cyan:    #2aa198;
+$solar-green:   #859900;
+
+// --- Solarized Light Theme for Code Blocks ---
+:root[data-theme="light"] {
+  // Overall code block background and text color
+  .highlight,
+  pre.highlight {
+    background-color: $sl-base03;
+    color: $sl-base00;
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 4px;
+  }
+
+  // Token-specific styles for Solarized Light
+  .highlight .hll { background-color: $sl-base02; }
+  .highlight .c { color: $sl-base1; font-style: italic } /* Comment */
+  .highlight .err { color: $solar-red; background-color: $sl-base02; } /* Error */
+  .highlight .k { color: $solar-green; } /* Keyword */
+  .highlight .l { color: $solar-orange; } /* Literal */
+  .highlight .n { color: $sl-base00; } /* Name */
+  .highlight .o { color: $solar-green; } /* Operator */
+  .highlight .p { color: $sl-base00; } /* Punctuation */
+
+  .highlight .cm { color: $sl-base1; font-style: italic } /* Comment.Multiline */
+  .highlight .cp { color: $solar-green; } /* Comment.Preproc */
+  .highlight .c1 { color: $sl-base1; font-style: italic } /* Comment.Single */
+  .highlight .cs { color: $solar-green; font-style: italic } /* Comment.Special */
+
+  .highlight .gd { color: $solar-red; } /* Generic.Deleted */
+  .highlight .ge { font-style: italic } /* Generic.Emph */
+  .highlight .gh { color: $sl-base0; font-weight: bold } /* Generic.Heading */
+  .highlight .gi { color: $solar-green; } /* Generic.Inserted */
+  .highlight .go { color: $sl-base01; } /* Generic.Output */
+  .highlight .gp { color: $sl-base0; } /* Generic.Prompt */
+  .highlight .gs { font-weight: bold } /* Generic.Strong */
+  .highlight .gu { color: $solar-green; } /* Generic.Subheading */
+  .highlight .gt { color: $solar-red; } /* Generic.Traceback */
+
+  .highlight .kc { color: $solar-green; } /* Keyword.Constant */
+  .highlight .kd { color: $solar-green; } /* Keyword.Declaration */
+  .highlight .kn { color: $solar-green; } /* Keyword.Namespace */
+  .highlight .kp { color: $solar-green; } /* Keyword.Pseudo */
+  .highlight .kr { color: $solar-green; } /* Keyword.Reserved */
+  .highlight .kt { color: $solar-green; } /* Keyword.Type */
+
+  .highlight .ld { color: $solar-orange; } /* Literal.Date */
+  .highlight .m { color: $solar-cyan; } /* Literal.Number */
+  .highlight .s { color: $solar-cyan; } /* Literal.String */
+
+  .highlight .na { color: $solar-blue; } /* Name.Attribute */
+  .highlight .nb { color: $solar-blue; } /* Name.Builtin */
+  .highlight .nc { color: $solar-blue; } /* Name.Class */
+  .highlight .no { color: $solar-blue; } /* Name.Constant */
+  .highlight .nd { color: $solar-blue; } /* Name.Decorator */
+  .highlight .ni { color: $solar-orange; } /* Name.Entity */
+  .highlight .ne { color: $solar-red; font-weight: bold } /* Name.Exception */
+  .highlight .nf { color: $solar-blue; } /* Name.Function */
+  .highlight .nl { color: $sl-base00; } /* Name.Label */
+  .highlight .nn { color: $sl-base00; } /* Name.Namespace */
+  .highlight .nx { color: $solar-blue; } /* Name.Other */
+  .highlight .py { color: $sl-base00; } /* Name.Property */
+  .highlight .nt { color: $solar-green; } /* Name.Tag */
+  .highlight .nv { color: $solar-blue; } /* Name.Variable */
+
+  .highlight .ow { color: $solar-green; } /* Operator.Word */
+
+  .highlight .w { color: $sl-base02; } /* Text.Whitespace */
+
+  .highlight .mf { color: $solar-cyan; } /* Literal.Number.Float */
+  .highlight .mh { color: $solar-cyan; } /* Literal.Number.Hex */
+  .highlight .mi { color: $solar-cyan; } /* Literal.Number.Integer */
+  .highlight .mo { color: $solar-cyan; } /* Literal.Number.Oct */
+  .highlight .sb { color: $solar-cyan; } /* Literal.String.Backtick */
+  .highlight .sc { color: $solar-cyan; } /* Literal.String.Char */
+  .highlight .sd { color: $solar-cyan; } /* Literal.String.Doc */
+  .highlight .s2 { color: $solar-cyan; } /* Literal.String.Double */
+  .highlight .se { color: $solar-orange; } /* Literal.String.Escape */
+  .highlight .sh { color: $solar-cyan; } /* Literal.String.Heredoc */
+  .highlight .si { color: $solar-orange; } /* Literal.String.Interpol */
+  .highlight .sx { color: $solar-green; } /* Literal.String.Other */
+  .highlight .sr { color: $solar-orange; } /* Literal.String.Regex */
+  .highlight .s1 { color: $solar-cyan; } /* Literal.String.Single */
+  .highlight .ss { color: $solar-orange; } /* Literal.String.Symbol */
+  .highlight .vc { color: $solar-blue; } /* Name.Variable.Class */
+  .highlight .vg { color: $solar-blue; } /* Name.Variable.Global */
+  .highlight .vi { color: $solar-blue; } /* Name.Variable.Instance */
+  .highlight .il { color: $solar-cyan; } /* Literal.Number.Integer.Long */
+}
+
+
+// --- Solarized Dark Theme for Code Blocks ---
+:root {
+  // Overall code block background and text color
+  .highlight,
+  pre.highlight {
+    background-color: $sd-base03;
+    color: $sd-base0;
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 4px;
+  }
+
+  // Token-specific styles for Solarized Dark
+  .highlight .hll { background-color: $sd-base02; }
+  .highlight .c { color: $sd-base01; font-style: italic } /* Comment */
+  .highlight .err { color: $solar-red; background-color: $sd-base02; } /* Error */
+  .highlight .k { color: $solar-green; } /* Keyword */
+  .highlight .l { color: $solar-orange; } /* Literal */
+  .highlight .n { color: $sd-base0; } /* Name */
+  .highlight .o { color: $solar-green; } /* Operator */
+  .highlight .p { color: $sd-base0; } /* Punctuation */
+
+  .highlight .cm { color: $sd-base01; font-style: italic } /* Comment.Multiline */
+  .highlight .cp { color: $solar-green; } /* Comment.Preproc */
+  .highlight .c1 { color: $sd-base01; font-style: italic } /* Comment.Single */
+  .highlight .cs { color: $solar-green; font-style: italic } /* Comment.Special */
+
+  .highlight .gd { color: $solar-red; } /* Generic.Deleted */
+  .highlight .ge { font-style: italic } /* Generic.Emph */
+  .highlight .gh { color: $sd-base0; font-weight: bold } /* Generic.Heading */
+  .highlight .gi { color: $solar-green; } /* Generic.Inserted */
+  .highlight .go { color: $sd-base01; } /* Generic.Output */
+  .highlight .gp { color: $sd-base0; } /* Generic.Prompt */
+  .highlight .gs { font-weight: bold } /* Generic.Strong */
+  .highlight .gu { color: $solar-green; } /* Generic.Subheading */
+  .highlight .gt { color: $solar-red; } /* Generic.Traceback */
+
+  .highlight .kc { color: $solar-green; } /* Keyword.Constant */
+  .highlight .kd { color: $solar-green; } /* Keyword.Declaration */
+  .highlight .kn { color: $solar-green; } /* Keyword.Namespace */
+  .highlight .kp { color: $solar-green; } /* Keyword.Pseudo */
+  .highlight .kr { color: $solar-green; } /* Keyword.Reserved */
+  .highlight .kt { color: $solar-green; } /* Keyword.Type */
+
+  .highlight .ld { color: $solar-orange; } /* Literal.Date */
+  .highlight .m { color: $solar-cyan; } /* Literal.Number */
+  .highlight .s { color: $solar-cyan; } /* Literal.String */
+
+  .highlight .na { color: $solar-blue; } /* Name.Attribute */
+  .highlight .nb { color: $solar-blue; } /* Name.Builtin */
+  .highlight .nc { color: $solar-blue; } /* Name.Class */
+  .highlight .no { color: $solar-blue; } /* Name.Constant */
+  .highlight .nd { color: $solar-blue; } /* Name.Decorator */
+  .highlight .ni { color: $solar-orange; } /* Name.Entity */
+  .highlight .ne { color: $solar-red; font-weight: bold } /* Name.Exception */
+  .highlight .nf { color: $solar-blue; } /* Name.Function */
+  .highlight .nl { color: $sd-base0; } /* Name.Label */
+  .highlight .nn { color: $sd-base0; } /* Name.Namespace */
+  .highlight .nx { color: $solar-blue; } /* Name.Other */
+  .highlight .py { color: $sd-base0; } /* Name.Property */
+  .highlight .nt { color: $solar-green; } /* Name.Tag */
+  .highlight .nv { color: $solar-blue; } /* Name.Variable */
+
+  .highlight .ow { color: $solar-green; } /* Operator.Word */
+
+  .highlight .w { color: $sd-base02; } /* Text.Whitespace */
+
+  .highlight .mf { color: $solar-cyan; } /* Literal.Number.Float */
+  .highlight .mh { color: $solar-cyan; } /* Literal.Number.Hex */
+  .highlight .mi { color: $solar-cyan; } /* Literal.Number.Integer */
+  .highlight .mo { color: $solar-cyan; } /* Literal.Number.Oct */
+  .highlight .sb { color: $solar-cyan; } /* Literal.String.Backtick */
+  .highlight .sc { color: $solar-cyan; } /* Literal.String.Char */
+  .highlight .sd { color: $solar-cyan; } /* Literal.String.Doc */
+  .highlight .s2 { color: $solar-cyan; } /* Literal.String.Double */
+  .highlight .se { color: $solar-orange; } /* Literal.String.Escape */
+  .highlight .sh { color: $solar-cyan; } /* Literal.String.Heredoc */
+  .highlight .si { color: $solar-orange; } /* Literal.String.Interpol */
+  .highlight .sx { color: $solar-green; } /* Literal.String.Other */
+  .highlight .sr { color: $solar-orange; } /* Literal.String.Regex */
+  .highlight .s1 { color: $solar-cyan; } /* Literal.String.Single */
+  .highlight .ss { color: $solar-orange; } /* Literal.String.Symbol */
+  .highlight .vc { color: $solar-blue; } /* Name.Variable.Class */
+  .highlight .vg { color: $solar-blue; } /* Name.Variable.Global */
+  .highlight .vi { color: $solar-blue; } /* Name.Variable.Instance */
+  .highlight .il { color: $solar-cyan; } /* Literal.Number.Integer.Long */
+}
+
+// Optional: Style for inline `code` elements
+// These typically don't get the full .highlight structure
+code {
+  // Common for both light and dark, or define inside each theme block
+  // If you want it to change with the theme, apply similar logic to .highlight
+  background-color: rgba($sd-base00, 0.1); // Using a transparent version of a base color
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-family: monospace; // Ensure it uses a monospace font
+
+//  :root[data-theme="light"] & {
+//    background-color: rgba($sl-base02, 0.5); // A lighter background for light mode
+//    color: $sl-base1;
+//  }
+
+//  :root[data-theme="dark"] & {
+  :root & {
+    background-color: rgba($sd-base02, 0.5); // A darker background for dark mode
+    color: $sd-base0;
+  }
+}
