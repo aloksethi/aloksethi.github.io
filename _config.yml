@@ -19,7 +19,8 @@ description: >- # this means to ignore newlines until "baseurl:"
   A peronsal blog where I place my projects, code snippets, etc. so that I can access them easilyt in the future.
 #twitter_username: username
 github_username: username
-minimal_mistakes_skin: default
+minimal_mistakes_skin: "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+theme_toggle: true
 search: true
 
 # Build settings
@@ -110,11 +111,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-  # css
-  - scope:
-      path: "assets/css"
-    values:
-      css: "custom"
 
 category_archive:
   type: liquid
