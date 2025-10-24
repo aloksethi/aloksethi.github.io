@@ -160,3 +160,47 @@ rm libz.so libz.so.1  #remove old symbolik links
 ln -s libz.so.1.2.11 libz.so
 ln -s libz.so.1.2.11 libz.so.1
 ```
+
+# Journalctl
+* To view all logs `journalctl`. The newest logs appear at the bottom by default.
+* To view the current entry as first `journalctl -r`. 
+* Follow logs in real-time `journalctl -f` 
+* View logs from a specific service `journalctl -u elec-price-monitor`
+* View logs from a specific time
+```
+journalctl --since "YYYY-MM-DD" 
+journalctl --since "15 minutes ago" 
+```
+copied extract from the man page: 
+```
+-S, --since=, -U, --until=
+           Start showing entries on or newer than the specified date, or
+           on or older than the specified date, respectively. Date
+           specifications should be of the format "2012-10-30 18:17:16".
+           If the time part is omitted, "00:00:00" is assumed. If only
+           the seconds component is omitted, ":00" is assumed. If the
+           date component is omitted, the current day is assumed.
+           Alternatively the strings "yesterday", "today", "tomorrow" are
+           understood, which refer to 00:00:00 of the day before the
+           current day, the current day, or the day after the current
+           day, respectively.  "now" refers to the current time. Finally,
+           relative times may be specified, prefixed with "-" or "+",
+           referring to times before or after the current time,
+           respectively. For complete time and date specification, see
+           systemd.time(7). Note that --output=short-full prints
+           timestamps that follow precisely this format.
+```
+* View logs from the current boot `journalctl -b`
+* List past boots `journalctl --list-boots`.
+* Messages from a particular boot `journalctl -b xxxxxxx`, use the id spitted by the `list-boots` option or use a number `-0` for last, `1` for the first boot found in the journal in chronological order, `2` the second, `-1` for the boot before last, and so on.  
+* View only kernel messages `journalctl -k` 
+
+# systemctl
+* Shows the runtime status of a service `systemctl status elec-price-monitor`
+* Start a service `systemctl start elec-price-monitor`
+* Stop a service `systemctl stop elec-price-monitor`
+* Restart a service `systemctl restart elec-price-monitor`
+* Enable a service and start automatically at boot `systemctl enable elec-price-monitor`
+* List all services `systemctl list-units --type=service --all`
+* List all runnint services `systemctl list-units --type=service --state=running`
+* Also check the answer on [stackexchance](https://unix.stackexchange.com/questions/517872/systemctl-list-all-possible-including-disabled-services)
