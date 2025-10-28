@@ -53,6 +53,19 @@ The REST api guide is available [here](https://transparencyplatform.zendesk.com/
 
 Currently the data is coming for every 60 minutes but I beleive it will change sometime in the future to every 15 mins. In the response xml, it is denoted by `<resolution>PT60M</resolution>`.
 
+## Linux dev box
+```shell
+(main) asethi@tux:elec_price_monitor $ source .venv/bin/activate
+(.venv) (main) asethi@tux:elec_price_monitor $ python3 -m build
+(.venv) (main) asethi@tux:elec_price_monitor $ pip install --editable .
+(.venv) (main) asethi@tux:elec_price_monitor $ python -m  elec_price_monitor.main_loop --debug --uc-ip 127.0.0.1
+```
+To view logs and rendered image
+```shell
+cd /datadisk/elec_price_monitor/elec_price_monitor/logs
+eog gen_img.png 
+```
+
 ## RPi
 ```shell
 python3 -m venv .venv
@@ -196,5 +209,6 @@ ret = i2c_read_blocking(EXT_RTC_I2C_DEV, EXT_RTC_I2C_ADDRESS, &buf[0], 7, false)
 if (ret == PICO_ERROR_GENERIC)
     printf("failed to read ext rtc\n");
 ```
+
 
 [Datasheet DS3231M](/assets/pdfs/ds3231m.pdf)
