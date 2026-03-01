@@ -104,6 +104,12 @@ Restart=always
 WantedBy=multi-user.target
 
 ```
+### dev part 2
+```
+ERROR - Failed to find font: font_name = 'DejaVuSans-Bold', font_size = 20
+```
+get the font from [gitbhub](https://github.com/dejavu-fonts/dejavu-fonts/releases)
+isntall DejaVu Sans Mono Bold font
 
 ## Pico W
 
@@ -212,3 +218,4 @@ if (ret == PICO_ERROR_GENERIC)
 
 
 [Datasheet DS3231M](/assets/pdfs/ds3231m.pdf)
+
