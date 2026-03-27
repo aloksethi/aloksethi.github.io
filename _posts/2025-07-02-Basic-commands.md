@@ -59,12 +59,15 @@ git branch --merged  #branches merged into current branch
 git branch --no-merged #beanches not merged into current branch
 
 git branch --contains <commit id>  # to see which branch contains a commit
+```
+## log command to see branches
+```
 git log --oneline --decorate --graph --all #show branches in graph view
-
 ```
 ## Creating a branch and push it
 ```
-git checkout -b <branch name>
+git checkout -b <branch name>  #old way
+git switch -c <branch name> #new way
 git push --set-upstream origin <branch name>
 git push -u origin <branch name> #short hand for setting upstream. This helps in making further push n pull without specifying branch name
 ```
