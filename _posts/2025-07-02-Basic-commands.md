@@ -54,11 +54,19 @@ vim ~/.gitconfig
 ## Showing list of branches
 ```
 git branch -a #shows both remote and local branches
+git branch -va #show also last commit info for both local and remote
+git branch --merged  #branches merged into current branch
+git branch --no-merged #beanches not merged into current branch
+
+git branch --contains <commit id>  # to see which branch contains a commit
+git log --oneline --decorate --graph --all #show branches in graph view
+
 ```
 ## Creating a branch and push it
 ```
 git checkout -b <branch name>
 git push --set-upstream origin <branch name>
+git push -u origin <branch name> #short hand for setting upstream. This helps in making further push n pull without specifying branch name
 ```
 ## Staging
 use the `-p` option to add individual hunks instead of complete file. you can further use `split/s` to break a given hunk into smaller chunks.
