@@ -56,10 +56,20 @@ vim ~/.gitconfig
 git branch -a #shows both remote and local branches
 git branch -va #show also last commit info for both local and remote
 git branch --merged  #branches merged into current branch
-git branch --no-merged #beanches not merged into current branch
+git branch --no-merged #branches not merged into current branch
 
 git branch --contains <commit id>  # to see which branch contains a commit
 ```
+### More branches and merges
+```
+git branch [options] --merged <commit>
+git branch [options] --no-merged <commit>
+```
+If no `<commit>` then `<commit> = HEAD`. So if you want to see branhces not merged into say Rel19 branch then
+`git branch -r --no-merged origin/Rel-19`
+
+
+
 ## log command to see branches
 ```
 git log --oneline --decorate --graph --all #show branches in graph view
@@ -73,6 +83,127 @@ git push -u origin <branch name> #short hand for setting upstream. This helps in
 ```
 ## Staging
 use the `-p` option to add individual hunks instead of complete file. you can further use `split/s` to break a given hunk into smaller chunks.
+
+## fetch
+```
+git fetch origin --prune
+```
+`--prune` Deletes stale remote-tracking branches, Keeps the repo as an image of server
+## rebasing
+```
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ git switch DC_FR1_FR2_UL_config_correction
+Updating files: 100% (6764/6764), done.
+Switched to branch 'DC_FR1_FR2_UL_config_correction'
+Your branch is up to date with 'origin/DC_FR1_FR2_UL_config_correction'.
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ git rebase origin/Rel-19
+Auto-merging NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json
+CONFLICT (content): Merge conflict in NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json
+Auto-merging NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257G.json
+CONFLICT (content): Merge conflict in NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257G.json
+Auto-merging NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257H.json
+CONFLICT (content): Merge conflict in NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257H.json
+Auto-merging NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257I.json
+CONFLICT (content): Merge conflict in NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257I.json
+error: could not apply 3c932ada... Fixes for FR1 and FR2 DC combinations where higher order combinations were added as part of UL configuration. Fixes are done and shared by Daniel Popp (Apple).
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 3c932ada... Fixes for FR1 and FR2 DC combinations where higher order combinations were added as part of UL configuration. Fixes are done and shared by Daniel Popp (Apple).
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ git add NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257G.json NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257H.json NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257I.json
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ git rebase --continue
+[detached HEAD debaf4b4] Fixes for FR1 and FR2 DC combinations where higher order combinations were added as part of UL configuration. Fixes are done and shared by Daniel Popp (Apple). manually fixed following forur files while rebasing    NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json \         NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257G.json \         NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257H.json \         NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257I.json
+ 2656 files changed, 11225 insertions(+), 44156 deletions(-)
+Successfully rebased and updated refs/heads/DC_FR1_FR2_UL_config_correction.
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ git status
+On branch DC_FR1_FR2_UL_config_correction
+Your branch and 'origin/DC_FR1_FR2_UL_config_correction' have diverged,
+and have 7 and 1 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+nothing to commit, working tree clean
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ git log --oneline --graph
+* debaf4b4 (HEAD -> DC_FR1_FR2_UL_config_correction) Fixes for FR1 and FR2 DC combinations where higher order combinations were added as part of UL configuration. Fixes are done and shared by Daniel Popp (Apple). manually fixed following forur files while rebasing        NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json \         NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257G.json \         NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257H.json \         NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257I.json
+*   f634c20b (origin/Rel-19, origin/HEAD) Merge branch 'DC_two_band_FR1__ul_config_fix' into 'Rel-19'
+|\
+| * 961d6f30 (origin/DC_two_band_FR1__ul_config_fix, DC_two_band_FR1__ul_config_fix) fixed UL configs in the two band DC combos in the json files.
+* |   0ec20046 Merge branch 'After_RAN#111' into 'Rel-19'
+|\ \
+| |/
+|/|
+| * 84f1f0e4 (origin/After_RAN#111) Editorial: Removing empty UL config lists ("ulConfigList": [],) since that is not allowed according to the schema file.
+| * 31f787a8 Corrections after review
+| * 84587404 CR1465_R4-2603037
+| * 29e686f5 CR1463_R4-2600141
+|/
+* a4d7f087 (tag: v19.4.0, origin/nokia-add-specification-and-schemaVersion, Rel-19) Removed unecessary .gitkeep
+*   060c6561 Merge branch 'ericsson-initial-import-from-19.4.0-docx' into 'Rel-19'
+|\
+| * 9d3ddf56 Replaced invalid line breaks by comma
+| * 714595c2 imported bands and BCs from 19.4.0
+|/
+* 2dc9e04d (origin/main) Initial repository layout
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ git push --force-with-lease origin DC_FR1_FR2_UL_config_correction
+Enumerating objects: 3534, done.
+Counting objects: 100% (3534/3534), done.
+Delta compression using up to 14 threads
+Compressing objects: 100% (553/553), done.
+Writing objects: 100% (2659/2659), 219.64 KiB | 13.73 MiB/s, done.
+Total 2659 (delta 2484), reused 2277 (delta 2106), pack-reused 0
+remote: Resolving deltas: 100% (2484/2484), completed with 315 local objects.
+remote:
+remote: View merge request for DC_FR1_FR2_UL_config_correction:
+remote:   https://forge.3gpp.org/rep/ran4/specifications/38.101/ts-38.101-3/-/merge_requests/4
+remote:
+To ssh://forge.3gpp.org:29419/ran4/specifications/38.101/ts-38.101-3.git
+ + 3c932ada...debaf4b4 DC_FR1_FR2_UL_config_correction -> DC_FR1_FR2_UL_config_correction (forced update)
+asethi@C-PF5WWAM2:~/win_desk/bc_Database/ts-38.101-3$ 
+```
+## diff and show
+```
+ git diff --name-only --diff-filter=U
+ git show :1:NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json
+ git show :2:NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json
+ git show :3:NR_Inter-band_DC_FR1_and_FR2/DC_n3A-n28A-n77A-n257A.json
+```
+For each conflicted path, Git can keep these versions:
+Stage 1 (**:1:**) = the common ancestor (“base”) version
+Stage 2 (**:2:**) = ours
+Stage 3 (**:3:**) = theirs
+This is true during merges, cherry-picks, and rebases (rebases internally replay commits like cherry-picks, so the same mechanism applies).
+During a rebase, 
+“ours” (:2:) = the version from the branch you are rebasing onto (e.g., origin/Rel-19, i.e., current HEAD at the rebase point)
+“theirs” (:3:) = the version from the commit being replayed (feature branch commit that Git is trying to apply)
+
+So in case of rebasing DC_FR1_FR2_UL_config_correction_part2 onto origin/Rel-19:
+:2: ==> Rel-19’s version
+:3: ==> DC_FR1_FR2_UL_config_correction_part2
+```
+git rev-list --left-right --count origin/Rel-19...HEAD
+```
+**A..B** (two dots) vs **A...B** (three dots)
+
+git rev-list  prints commit IDs reachable from some revision(s). With --count, it prints how many commits match the selection.
+Two dots A..B means:
+commits reachable from B that are NOT reachable from A
+(i.e., “what B has that A doesn’t”)
+
+Three dots A...B means:
+commits that are reachable from either A or B, but not both
+(i.e., the symmetric difference)
+In other words: “What differs between the two histories.”
+
+with `--left-right` in A...B, git can label which side each commit belongs to:
+commits unique to A are “left”
+commits unique to B are “right”
+
+an output like:
+`6 2` means
+6 = commits that are in origin/Rel-19 but not in current branch (HEAD)→ i.e., 6 commits behind Rel‑19
+2 = commits that are in HEAD but not in origin/Rel-19 → i.e., current branch is 2 commits ahead
+
+git log --oneline HEAD..origin/Rel-19  #what is misisng
+git log --oneline origin/Rel-19..HEAD  #what is there
 
 ## Useful links<br> 
 * [Git on a server](https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server#_getting_git_on_a_server)
